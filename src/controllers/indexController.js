@@ -93,7 +93,7 @@ module.exports = {
         }
     },
 
-    notification: (req, res) => {
+    notifications: (req, res) => {
         console.log(req.body);
 
         res.status(200).end('Ok');
