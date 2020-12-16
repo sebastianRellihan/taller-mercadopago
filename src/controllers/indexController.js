@@ -13,7 +13,7 @@ module.exports = {
         return res.render("detail", { ...req.query });
     },
     buy: (req, res) => {
-        const host = 'http://localhost:3000/';
+        const host = 'https://mercado-pago-cert-sr.herokuapp.com/';
         const url = host + 'callback?status=';
 
         let preference = {
