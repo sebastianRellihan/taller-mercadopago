@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="es">
+<!-- Include Head -->
+<%- include('partials/head', { title: 'Compra exitosa' }) %>
+<body>
+	<!-- Header -->
+	<%- include('partials/headerNavbar') %>
+	<!-- /Header -->
+
+    <!-- exitosa -->
+    <h1>¡Tu compra se ha realizado exitosamente!</h1>
+
+	<h4>Detalles de la compra:</h4>
+    <p>Tipo de pago: <%= payment_type %> </p>
+    <p>Referencia externa: <%= external_reference %></p>
+    <p>Id de pago: <%= collection_id %> </p>
+	<!-- /exitosa -->
+
+	<!-- footer -->
+	<%- include('partials/footer') %>
+	<!-- /footer -->
+
+</body>	
+</html>

@@ -14,10 +14,12 @@ module.exports = {
     },
     callback: (req, res) => {
 
-        console.log(req.query);
-
         if (req.query.status.includes('success')) {
-            return res.render('success');
+            return res.render('success', {
+                payment_type: req.query.payment_type,
+                external_reference: req.query.external_reference,
+                collection_id: req.query.collection_id
+            });
         }
 
         if (req.query.status.includes('pending')) {
@@ -50,37 +52,38 @@ module.exports = {
             auto_return: 'approved',
 
             payer: {
-                name: 'Ryan',
-                surname: 'Dahl',
+                name: 'Lalo',
+                surname: 'Landa',
                 email: 'test_user_63274575@testuser.com',
                 phone: {
                     area_code: '11',
-                    number: 55556666
+                    number: 22223333
                 },
                 address: {
-                    zip_code: '1234',
-                    street_name: 'Monroe',
-                    street_number: 860
+                    zip_code: '1111',
+                    street_name: 'False',
+                    street_number: 123
                 }
             },
+            external_reference: 'srellihan@gmail.com',
             payment_methods: {
                 excluded_payment_methods: [
-                    { id : 'visa' }
+                    { id : 'amex' }
                 ],
                 excluded_payment_types: [
                     { id : 'atm' }
                 ],
-                installments: 12
+                installments: 6
             },
             items: [
                 {
                 id: '1234',
-                title: 'Mi producto',
+                title: String(req.body.title),
                 description: 'Dispositivo móvil de Tienda e-commerce',
-                picture_url: 'https://mercado-pago-cert-sr.herokuapp.com/images/products/jordan.jpg',
+                picture_url: 'https://mercado-pago-cert-sr.herokuapp.com/images/products/' + req.body.title + '.jpg',
                 quantity: 1,
                 currency_id: 'ARS',
-                unit_price: 100,
+                unit_price: Number(req.body.price),
                 }
             ]
         };

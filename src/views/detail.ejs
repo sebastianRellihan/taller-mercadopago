@@ -41,6 +41,8 @@
 
 						<div class="mercadopago-button-container">
 							<form action="/buy" method="POST">
+								<input type="hidden" name="price" value="<%= price %>">
+								<input type="hidden" name="title" value="<%= title %>">
 								<button class="mercadopago-button" type="submit">
 									Pagar la compra
 								</button>
@@ -57,5 +59,7 @@
 	<%- include('partials/footer') %>
 	<!-- /footer -->
 
+	<!-- Meli security Script -->
+	<script src="https://www.mercadopago.com/v2/security.js" view="item"></script>
 </body>	
 </html>
