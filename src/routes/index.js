@@ -11,7 +11,7 @@ router.get('/detail', indexController.detail);
 
 router.get('/callback', indexController.callback);
 
-router.post('/notifications', indexController.notifications);
+router.post('/webhooks', indexController.webhooks);
 
 /* POST /buy */
 router.post('/buy', indexController.buy);

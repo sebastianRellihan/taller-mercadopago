@@ -12,8 +12,29 @@ module.exports = {
     detail: (req, res) => {
         return res.render("detail", { ...req.query });
     },
+    callback: (req, res) => {
+
+        console.log(req.query);
+
+        if (req.query.status.includes('success')) {
+            return res.render('success');
+        }
+
+        if (req.query.status.includes('pending')) {
+            return res.render('pending');
+        }
+
+        if (req.query.status.includes('failure')) {
+            return res.render('failure');
+        }
+    },
+
+    webhooks: (req, res) => {
+        console.log('webhooks :', req.body);
+        res.status(200).end('ok')
+    },
     buy: (req, res) => {
-        const host = 'http://localhost:3000/';
+        const host = 'https://mercado-pago-cert-sr.herokuapp.com/';
         const url = host + 'callback?status=';
 
         let preference = {
@@ -24,7 +45,7 @@ module.exports = {
                 failure: url + 'failure'
             },
 
-            notification_url: hoat + 'notifications',
+            notification_url: host + 'webhooks',
 
             auto_return: 'approved',
 
@@ -74,28 +95,5 @@ module.exports = {
                 res.send('error');
             })
 
-    },
-
-    callback: (req, res) => {
-
-        console.log(req.query);
-
-        if (req.query.status.includes('success')) {
-            return res.render('success');
-        }
-
-        if (req.query.status.includes('pending')) {
-            return res.render('pending');
-        }
-
-        if (req.query.status.includes('failure')) {
-            return res.render('failure');
-        }
-    },
-
-    notification: (req, res) => {
-        console.log(req.body);
-
-        res.status(200).end('Ok');
     }
 }
