@@ -24,7 +24,7 @@ module.exports = {
                 failure: url + 'failure'
             },
 
-            notification_url: hoat + 'notifications',
+            notification_url: host + 'notifications',
 
             auto_return: 'approved',
 
@@ -91,11 +91,18 @@ module.exports = {
         if (req.query.status.includes('failure')) {
             return res.render('failure');
         }
+
+        return res.status(404).end();
     },
 
     notifications: (req, res) => {
         console.log(req.body);
 
         res.status(200).end('Ok');
+    },
+
+    webhooks: (req, res) => {
+        console.log('webhooks: ', req.body);
+        res.status(200).send(req.body);
     }
 }
